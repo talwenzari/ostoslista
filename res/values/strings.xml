@@ -3,6 +3,7 @@
 
     <string name="app_name">OstosLista</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
-
+    <string name="edit_message">Lisää uusi</string>
+    <string name="button_send">Lisää</string>
+    
 </resources>
