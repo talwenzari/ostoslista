@@ -1,16 +1,26 @@
 package fi.talwenzari.ostoslista;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ListView;
 
 public class MainActivity extends Activity {
-
-    @Override
+	
+	private ArrayAdapter<String> arrayAdapter;
+	
+	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
+
+        ListView listView = (ListView) findViewById(R.id.listview);
+        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+        listView.setAdapter(arrayAdapter);
+	}
 
 
     @Override
@@ -20,4 +30,11 @@ public class MainActivity extends Activity {
         return true;
     }
     
+    public void addItem(View view) {
+    	EditText editText = (EditText) findViewById(R.id.edit_message);
+    	String message = editText.getText().toString();
+    	arrayAdapter.add(message);
+    	arrayAdapter.notifyDataSetChanged();
+    	editText.setText("");
+    }
 }
