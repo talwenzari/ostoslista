@@ -1,5 +1,6 @@
 package fi.talwenzari.ostoslista;
 
+import fi.talwenzari.ostoslista.model.ShoppingListItem;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,7 +11,7 @@ import android.widget.ListView;
 
 public class MainActivity extends Activity {
 	
-	private ArrayAdapter<String> arrayAdapter;
+	private ArrayAdapter<ShoppingListItem> arrayAdapter;
 	
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +19,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         ListView listView = (ListView) findViewById(R.id.listview);
-        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+        arrayAdapter = new ShoppingListAdapter(this);
         listView.setAdapter(arrayAdapter);
 	}
 
@@ -33,7 +34,7 @@ public class MainActivity extends Activity {
     public void addItem(View view) {
     	EditText editText = (EditText) findViewById(R.id.edit_message);
     	String message = editText.getText().toString();
-    	arrayAdapter.add(message);
+    	arrayAdapter.add(new ShoppingListItem(message, arrayAdapter.getCount() + 1));
     	arrayAdapter.notifyDataSetChanged();
     	editText.setText("");
     }
